@@ -23,4 +23,12 @@ steps:
   displayName: 'Instalando as deps do projeto'
 
 - script: npx cypress run --spec "cypress/integration/examples/actions.spec.js"
-  displayName: 'Executando testess'
+  displayName: 'Executando testes'
+  continueOnError: true 
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/junit*.xml'
+    mergeTestResults: true
+  continueOnError: true
